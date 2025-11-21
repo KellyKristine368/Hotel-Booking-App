@@ -1,0 +1,49 @@
+{% extends "hotel/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mx-auto py-6">
+
+    <h1 class="text-3xl font-bold mb-6">Find Hotels</h1>
+
+    <!-- Filter Form -->
+    <form method="get" class="flex space-x-4 mb-6">
+
+        <!-- Sort Dropdown -->
+        <select name="sort_by" class="border rounded px-3 py-2">
+            <option value="">Sort by price</option>
+            <option value="asc" {% if sort_by == "asc" %}selected{% endif %}>Price: Low to High</option>
+            <option value="dsc" {% if sort_by == "dsc" %}selected{% endif %}>Price: High to Low</option>
+        </select>
+
+        <!-- Budget Input -->
+        <input type="number" name="amount" placeholder="Max Budget"
+               value="{{ amount }}" class="border rounded px-3 py-2">
+
+        <button class="bg-blue-600 text-white px-4 py-2 rounded">Apply</button>
+    </form>
+
+    <!-- Hotel Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        {% for hotel in hotels %}
+        <div class="bg-white shadow rounded-xl p-4">
+
+            {% if hotel.image %}
+                <img src="{{ hotel.image.url }}" alt="{{ hotel.hotel_name }}" class="rounded-lg h-48 w-full object-cover mb-3">
+            {% endif %}
+
+            <h2 class="text-xl font-bold">{{ hotel.hotel_name }}</h2>
+            <p class="text-gray-600">{{ hotel.location }}</p>
+
+            <p class="mt-2 font-semibold">${{ hotel.hotel_price }}</p>
+
+            <p class="text-gray-800 mt-2">{{ hotel.hotel_description|truncatewords:20 }}</p>
+
+        </div>
+        {% empty %}
+            <p>No hotels found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

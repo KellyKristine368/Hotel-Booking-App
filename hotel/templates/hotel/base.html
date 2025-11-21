@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}HotelFinder{% endblock %}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+
+    /* Dark glass navbar */
+    .glass {
+      background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent */
+      backdrop-filter: blur(12px);
+    }
+
+    /* Hero section background */
+    .hero-bg {
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)),
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyfDB8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTY5OTExOTk1MQ&ixlib=rb-4.0.3&q=80&w=1080');
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes fade-in {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    .animate-fade-in { animation: fade-in 1s ease forwards; }
+    .delay-200 { animation-delay: 0.2s; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- NAVIGATION -->
+  <header class="fixed top-0 left-0 w-full z-50 glass shadow-lg">
+    <nav class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between transition-all duration-300">
+      <a href="/" class="flex items-center gap-3 text-white">
+        <img src="https://cdn-icons-png.flaticon.com/512/713/713375.png" alt="HotelFinder" class="h-10 w-10"/>
+        <h2 class="text-xl font-semibold">HotelFinder</h2>
+      </a>
+
+      <div class="hidden md:flex space-x-6 text-sm font-medium text-white">
+        <a href="/" class="hover:text-blue-400">Home</a>
+        <a href="{% url 'search' %}" class="hover:text-blue-400">Search</a>
+        <a href="{% url 'about' %}" class="hover:text-blue-400">About</a>
+        <a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a>
+      </div>
+
+      <!-- Mobile hamburger -->
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-white focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-900 bg-opacity-90 text-white px-6 py-4 space-y-2">
+      <a href="/" class="block hover:text-blue-400">Home</a>
+      <a href="{% url 'search' %}" class="block hover:text-blue-400">Search</a>
+      <a href="{% url 'about' %}" class="block hover:text-blue-400">About</a>
+      <a href="{% url 'contact' %}" class="block hover:text-blue-400">Contact</a>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-300 py-12 mt-20">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-white">HotelFinder</h3>
+        <p class="text-sm opacity-80">Find hotels that fit your budget, comfort, and style.</p>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-white">Quick Links</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="hover:text-white">Home</a></li>
+          <li><a href="{% url 'search' %}" class="hover:text-white">Search</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-white">About Us</a></li>
+          <li><a href="{% url 'contact' %}" class="hover:text-white">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold mb-3 text-white">Contact Info</h3>
+        <p class="text-sm opacity-80">support@hotelfinder.com</p>
+        <p class="text-sm opacity-80">(+233) 555-123-456</p>
+        <div class="flex space-x-3 mt-3">
+          <a href="#" class="hover:text-white">🌐</a>
+          <a href="#" class="hover:text-white">📘</a>
+          <a href="#" class="hover:text-white">🐦</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => { menu.classList.toggle('hidden'); });
+  </script>
+</body>
+</html>

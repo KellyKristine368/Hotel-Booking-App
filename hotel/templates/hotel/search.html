@@ -1,0 +1,27 @@
+{% extends 'hotel/base.html' %}
+
+{% block title %}Search Results | HotelFinder{% endblock %}
+
+{% block content %}
+<section class="max-w-7xl mx-auto px-6 mt-12">
+    <h2 class="text-3xl font-semibold mb-6">Search Results</h2>
+
+    {% if hotels %}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {% for hotel in hotels %}
+        <div class="bg-white shadow-lg rounded-xl overflow-hidden hover:scale-[1.02] transition">
+            <img src="{{ hotel.image.url }}" class="w-full h-56 object-cover" />
+            <div class="p-5">
+                <h3 class="text-xl font-semibold mb-2">{{ hotel.name }}</h3>
+                <p class="text-gray-500 text-sm mb-3">{{ hotel.location }}</p>
+                <p class="font-semibold mb-4">${{ hotel.price }} / night</p>
+                <a href="{% url 'hotel_detail' hotel.id %}" class="text-blue-600 hover:underline text-sm">View Details</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-gray-500">No hotels found matching your search criteria.</p>
+    {% endif %}
+</section>
+{% endblock %}
