@@ -9,26 +9,24 @@
   <style>
     body { font-family: 'Poppins', sans-serif; }
 
-    /* Dark glass navbar */
-    .glass {
-      background: rgba(0, 0, 0, 0.5); /* Dark semi-transparent */
-      backdrop-filter: blur(12px);
-    }
+    /* Glass navbar */
+    .glass { background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); }
 
-    /* Hero section background */
+    /* Hero background with gradient overlay */
     .hero-bg {
-      background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)),
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.6)),
                         url('https://images.unsplash.com/photo-1566073771259-6a8506099945?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5MTMyfDB8MHwxfHNlYXJjaHwxfHxob3RlbCUyMGxvYmJ5fGVufDB8fHx8MTY5OTExOTk1MQ&ixlib=rb-4.0.3&q=80&w=1080');
       background-size: cover;
       background-position: center;
+      background-attachment: fixed;
     }
 
-    @keyframes fade-in {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
+    @keyframes fade-in { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:translateY(0);} }
     .animate-fade-in { animation: fade-in 1s ease forwards; }
     .delay-200 { animation-delay: 0.2s; }
+
+    /* Card hover effect */
+    .card-hover:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -42,10 +40,10 @@
       </a>
 
       <div class="hidden md:flex space-x-6 text-sm font-medium text-white">
-        <a href="/" class="hover:text-blue-400">Home</a>
-        <a href="{% url 'search' %}" class="hover:text-blue-400">Search</a>
-        <a href="{% url 'about' %}" class="hover:text-blue-400">About</a>
-        <a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a>
+        <a href="/" class="hover:text-blue-400 transition">Home</a>
+        <a href="{% url 'search' %}" class="hover:text-blue-400 transition">Search</a>
+        <a href="{% url 'about' %}" class="hover:text-blue-400 transition">About</a>
+        <a href="{% url 'contact' %}" class="hover:text-blue-400 transition">Contact</a>
       </div>
 
       <!-- Mobile hamburger -->
@@ -84,10 +82,10 @@
       <div>
         <h3 class="text-lg font-semibold mb-3 text-white">Quick Links</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/" class="hover:text-white">Home</a></li>
-          <li><a href="{% url 'search' %}" class="hover:text-white">Search</a></li>
-          <li><a href="{% url 'about' %}" class="hover:text-white">About Us</a></li>
-          <li><a href="{% url 'contact' %}" class="hover:text-white">Contact</a></li>
+          <li><a href="/" class="hover:text-white transition">Home</a></li>
+          <li><a href="{% url 'search' %}" class="hover:text-white transition">Search</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-white transition">About Us</a></li>
+          <li><a href="{% url 'contact' %}" class="hover:text-white transition">Contact</a></li>
         </ul>
       </div>
 
@@ -96,9 +94,9 @@
         <p class="text-sm opacity-80">support@hotelfinder.com</p>
         <p class="text-sm opacity-80">(+233) 555-123-456</p>
         <div class="flex space-x-3 mt-3">
-          <a href="#" class="hover:text-white">🌐</a>
-          <a href="#" class="hover:text-white">📘</a>
-          <a href="#" class="hover:text-white">🐦</a>
+          <a href="#" class="hover:text-white transition">🌐</a>
+          <a href="#" class="hover:text-white transition">📘</a>
+          <a href="#" class="hover:text-white transition">🐦</a>
         </div>
       </div>
     </div>
